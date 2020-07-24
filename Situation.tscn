@@ -1,0 +1,44 @@
+[gd_scene format=2]
+
+[node name="Situation" type="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 493.0
+margin_bottom = 493.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 479.0
+margin_bottom = 479.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 472.0
+margin_bottom = 14.0
+
+[node name="Options" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 472.0
+margin_bottom = 110.0
+
+[node name="A" type="Button" parent="VBoxContainer/Options"]
+margin_right = 472.0
+margin_bottom = 20.0
+
+[node name="B" type="Button" parent="VBoxContainer/Options"]
+margin_top = 24.0
+margin_right = 472.0
+margin_bottom = 44.0
+
+[node name="C" type="Button" parent="VBoxContainer/Options"]
+margin_top = 48.0
+margin_right = 472.0
+margin_bottom = 68.0
+
+[node name="D" type="Button" parent="VBoxContainer/Options"]
+margin_top = 72.0
+margin_right = 472.0
+margin_bottom = 92.0

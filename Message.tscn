@@ -1,0 +1,24 @@
+[gd_scene format=2]
+
+[node name="Message" type="PanelContainer"]
+margin_right = 500.0
+margin_bottom = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Messages" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 493.0
+margin_bottom = 493.0
+
+[node name="Label" type="Label" parent="Messages"]
+margin_right = 486.0
+margin_bottom = 14.0
+
+[node name="Continue" type="Button" parent="Messages"]
+margin_top = 18.0
+margin_right = 486.0
+margin_bottom = 38.0
+text = "continuar"

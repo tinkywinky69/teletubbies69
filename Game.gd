@@ -7,28 +7,41 @@ onready var menu_mensaje := $Message
 onready var menu_pregunta:= $Situation
 onready var menu_message:= $Message
 
-var pregunta_numero = 0
-
-var preguntas = [
-	#0
-	['estas en clases que haces', 'te matas', 'matas a la niña', 'robas el iphone', 'nada', 3],
-	#1
-	['ahora que estas millonario usas tus bitcoins en', 'comprar un buen coche', 'gastarlo en arruinarle la vida a un amigo', 'lo donas a los pobres', 'te lo comes', 2],
-]
-
-var mensajes = [
-	#0
-	[	'te has matado ya se ha terminado para ti', 
-		'era tu hermana pinche flaite', 
-		'el iphone que te has robado esta lleno de bitcoins te has forrado',
-		'que nada pinche inutil de mierda'],
-	#1
-	[	'pinche culero inutil te has matado al salir con tu nuevo coche',
-		'te has arruinado tu tambien',
-		'pinche puto',
-		'pinche culero'],
-]
-
+var situacion_actual = 1
+var situaciones = {
+	1: {'enunciado': 'estas en clases que haces',
+		'preguntas': {
+			1: {'pregunta': 'te matas',
+				'mensaje': 'te has matado ya se ha terminado para ti',
+				'siguiente': 1}, 
+			2: {'pregunta': 'matas a la niña',
+				'mensaje': 'era tu hermana pinche flaite',
+				'siguiente': 1}, 
+			3: {'pregunta': 'robas el iphone',
+				'mensaje': 'el iphone que te has robado esta lleno de bitcoins te has forrado',
+				'siguiente': 2}, 
+			4: {'pregunta': 'nada',
+				'mensaje': 'que nada pinche inutil de mierda',
+				'siguiente': 1}, 
+			}
+	},
+	2: {'enunciado': 'ahora que estas millonario usas tus bitcoins en',
+		'preguntas': {
+			1: {'pregunta': 'comprar un buen coche',
+				'mensaje': 'pinche culero inutil te has matado al salir con tu nuevo coche',
+				'siguiente': 1}, 
+			2: {'pregunta': 'gastarlo en arruinarle la vida a un amigo',
+				'mensaje': 'te has arruinado tu tambien',
+				'siguiente': 1}, 
+			3: {'pregunta': 'lo donas a los pobres',
+				'mensaje': 'pinche puto',
+				'siguiente': 2}, 
+			4: {'pregunta': 'te lo comes',
+				'mensaje': 'pinche culiao flaite',
+				'siguiente': 1}, 
+			}
+	}
+}
 
 func _ready():
 	$Message/Messages/Continue.connect("pressed", self, "_on_Continue_pressed")
@@ -36,27 +49,28 @@ func _ready():
 	_cambiar_pregunta()
 
 func _cambiar_pregunta():
-	pregunta_label.set_text(preguntas[pregunta_numero][0])
+	for b in respuestas.get_children():
+		b.queue_free()
+	
+	var s = situaciones[situacion_actual]
+	
+	pregunta_label.set_text(s['enunciado'])
 
-	var texto_respuesta = ''
-	for btn_respuesta in respuestas.get_children():
-		btn_respuesta.set_text(preguntas[pregunta_numero][btn_respuesta.get_index()+1])
-		btn_respuesta.connect("pressed", self, "_on_click", [btn_respuesta.get_index()])
+	for p in s['preguntas'].values():
+		var b = Button.new()
+		b.set_text(p['pregunta'])
+		respuestas.add_child(b)
+		b.connect("pressed", self, "_on_click", [p])
 
-func _on_click(boton_index):
-	var texto_mensaje = mensajes[pregunta_numero][boton_index]
-	mensaje_label.set_text(texto_mensaje)
+func _on_click(pregunta):
+	mensaje_label.set_text(pregunta['mensaje'])
 	
 	menu_mensaje.visible = true
 	menu_pregunta.visible = false
 	
-	if(preguntas[pregunta_numero][5] == boton_index+1):
-		pregunta_numero = pregunta_numero + 1
-	else:
-		pregunta_numero = 0
+	situacion_actual = pregunta['siguiente']
 	
 	_cambiar_pregunta()
-
 
 func _on_Continue_pressed():
 	menu_pregunta.visible = true

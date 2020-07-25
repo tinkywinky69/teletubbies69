@@ -22,23 +22,4 @@ margin_bottom = 14.0
 [node name="Options" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 18.0
 margin_right = 472.0
-margin_bottom = 110.0
-
-[node name="A" type="Button" parent="VBoxContainer/Options"]
-margin_right = 472.0
-margin_bottom = 20.0
-
-[node name="B" type="Button" parent="VBoxContainer/Options"]
-margin_top = 24.0
-margin_right = 472.0
-margin_bottom = 44.0
-
-[node name="C" type="Button" parent="VBoxContainer/Options"]
-margin_top = 48.0
-margin_right = 472.0
-margin_bottom = 68.0
-
-[node name="D" type="Button" parent="VBoxContainer/Options"]
-margin_top = 72.0
-margin_right = 472.0
-margin_bottom = 92.0
+margin_bottom = 18.0

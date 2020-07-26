@@ -1,10 +1,8 @@
 [gd_scene format=2]
 
 [node name="Situation" type="PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 493.0
-margin_bottom = 493.0
+margin_right = 500.0
+margin_bottom = 500.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -12,14 +10,20 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 479.0
-margin_bottom = 479.0
+margin_right = 493.0
+margin_bottom = 493.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 472.0
+margin_right = 486.0
 margin_bottom = 14.0
 
-[node name="Options" type="VBoxContainer" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 margin_top = 18.0
-margin_right = 472.0
-margin_bottom = 18.0
+margin_right = 486.0
+margin_bottom = 22.0
+
+[node name="Options" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 26.0
+margin_right = 486.0
+margin_bottom = 26.0
+custom_constants/separation = 20

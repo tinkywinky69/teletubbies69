@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://SituationInput.gd" type="Script" id=1]
+
+[node name="SituationInput" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -824.0
+margin_bottom = -400.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+margin_right = 200.0
+margin_bottom = 4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_top = 8.0
+margin_right = 200.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+margin_top = 5.0
+margin_right = 43.0
+margin_bottom = 19.0
+text = "opcion"
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+margin_left = 47.0
+margin_top = 5.0
+margin_right = 114.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "siguiente"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="LineEdit" parent="HBoxContainer"]
+margin_left = 118.0
+margin_right = 176.0
+margin_bottom = 24.0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_left = 180.0
+margin_right = 200.0
+margin_bottom = 24.0
+text = "X"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Option" type="LineEdit" parent="."]
+margin_top = 36.0
+margin_right = 200.0
+margin_bottom = 60.0
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="Label2" type="Label" parent="."]
+margin_top = 64.0
+margin_right = 200.0
+margin_bottom = 78.0
+text = "mensaje"
+
+[node name="Message" type="TextEdit" parent="."]
+margin_top = 82.0
+margin_right = 200.0
+margin_bottom = 142.0
+rect_min_size = Vector2( 0, 60 )
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_top = 146.0
+margin_right = 200.0
+margin_bottom = 150.0
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_Button_pressed"]

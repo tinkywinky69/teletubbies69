@@ -7,62 +7,30 @@ onready var menu_mensaje := $Message
 onready var menu_pregunta:= $Situation
 onready var menu_message:= $Message
 
-var situacion_actual = 1
-var situaciones = {
-	1: {'enunciado': 'estas en clases que haces',
-		'preguntas': {
-			1: {'pregunta': 'te matas',
-				'mensaje': 'te has matado ya se ha terminado para ti',
-				'siguiente': 1}, 
-			2: {'pregunta': 'matas a la niña',
-				'mensaje': 'era tu hermana pinche flaite',
-				'siguiente': 1}, 
-			3: {'pregunta': 'robas el iphone',
-				'mensaje': 'el iphone que te has robado esta lleno de bitcoins te has forrado',
-				'siguiente': 2}, 
-			4: {'pregunta': 'nada',
-				'mensaje': 'que nada pinche inutil de mierda',
-				'siguiente': 1}, 
-			}
-	},
-	2: {'enunciado': 'ahora que estas millonario usas tus bitcoins en',
-		'preguntas': {
-			1: {'pregunta': 'comprar un buen coche',
-				'mensaje': 'pinche culero inutil te has matado al salir con tu nuevo coche',
-				'siguiente': 1}, 
-			2: {'pregunta': 'gastarlo en arruinarle la vida a un amigo',
-				'mensaje': 'te has arruinado tu tambien',
-				'siguiente': 1}, 
-			3: {'pregunta': 'lo donas a los pobres',
-				'mensaje': 'pinche puto',
-				'siguiente': 2}, 
-			4: {'pregunta': 'te lo comes',
-				'mensaje': 'pinche culiao flaite',
-				'siguiente': 1}, 
-			}
-	}
-}
 
-func _ready():
+var situacion_actual = '1'
+
+func _ready() -> void:
+	Data.load_data()
 	$Message/Messages/Continue.connect("pressed", self, "_on_Continue_pressed")
 
 	_cambiar_pregunta()
 
-func _cambiar_pregunta():
+func _cambiar_pregunta() -> void:
 	for b in respuestas.get_children():
 		b.queue_free()
 	
-	var s = situaciones[situacion_actual]
+	var s = Data.situaciones[situacion_actual]
 	
 	pregunta_label.set_text(s['enunciado'])
 
-	for p in s['preguntas'].values():
-		var b = Button.new()
-		b.set_text(p['pregunta'])
+	for p in s['preguntas']:
+		var b = load("res://Opcion.tscn").instance()
 		respuestas.add_child(b)
-		b.connect("pressed", self, "_on_click", [p])
+		b.set_text(p['pregunta'])
+		b.get_node('Button').connect("pressed", self, "_on_click", [p])
 
-func _on_click(pregunta):
+func _on_click(pregunta) -> void:
 	mensaje_label.set_text(pregunta['mensaje'])
 	
 	menu_mensaje.visible = true
@@ -72,6 +40,11 @@ func _on_click(pregunta):
 	
 	_cambiar_pregunta()
 
-func _on_Continue_pressed():
+func _on_Continue_pressed() -> void:
 	menu_pregunta.visible = true
 	menu_message.visible = false
+
+
+func _on_Button_pressed():
+	var insert_data = preload("res://DataInsert.tscn").instance()
+	self.add_child(insert_data)
